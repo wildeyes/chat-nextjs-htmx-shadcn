@@ -4,10 +4,7 @@ import {
   Book,
   Bot,
   Code2,
-  CornerDownLeft,
   LifeBuoy,
-  Mic,
-  Paperclip,
   Rabbit,
   Settings,
   Settings2,
@@ -18,7 +15,6 @@ import {
   Turtle,
 } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Drawer,
@@ -33,7 +29,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip";
-import { cn } from "@/lib/utils";
+import { MessagePane } from "./messages-pane";
 
 export default function Home() {
   return (
@@ -44,94 +40,8 @@ export default function Home() {
             <Triangle className="size-5 fill-foreground" />
           </Button>
         </div>
-        {/* <nav className="grid gap-1 p-2">
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-lg bg-muted" aria-label="Playground">
-                  <SquareTerminal className="size-5" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent side="right" sideOffset={5}>
-                Playground
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-lg" aria-label="Models">
-                  <Bot className="size-5" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent side="right" sideOffset={5}>
-                Models
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-lg" aria-label="API">
-                  <Code2 className="size-5" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent side="right" sideOffset={5}>
-                API
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-lg" aria-label="Documentation">
-                  <Book className="size-5" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent side="right" sideOffset={5}>
-                Documentation
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-lg" aria-label="Settings">
-                  <Settings2 className="size-5" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent side="right" sideOffset={5}>
-                Settings
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </nav> */}
-        {/* <nav className="mt-auto grid gap-1 p-2">
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="ghost" size="icon" className="mt-auto rounded-lg" aria-label="Help">
-                  <LifeBuoy className="size-5" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent side="right" sideOffset={5}>
-                Help
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="ghost" size="icon" className="mt-auto rounded-lg" aria-label="Account">
-                  <SquareUser className="size-5" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent side="right" sideOffset={5}>
-                Account
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </nav> */}
+        {/* <NavBar />
+        <Navbar2 /> */}
       </aside>
       <div className="flex flex-col">
         <header className="sticky top-0 z-10 flex h-[53px] items-center gap-1 border-b bg-background px-4">
@@ -144,13 +54,111 @@ export default function Home() {
         </header>
         <main className="grid flex-1 gap-4 overflow-auto p-4 md:grid-cols-2 lg:grid-cols-2">
           {/* <SettingsPane /> */}
-          <MessagePane />
-          <MessagePane />
+          <MessagePane user={{ name: "god" }} />
+          <MessagePane user={{ name: "man" }} />
         </main>
       </div>
     </div>
   );
 }
+function Navbar2() {
+  return (
+    <nav className="mt-auto grid gap-1 p-2">
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="ghost" size="icon" className="mt-auto rounded-lg" aria-label="Help">
+              <LifeBuoy className="size-5" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent side="right" sideOffset={5}>
+            Help
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="ghost" size="icon" className="mt-auto rounded-lg" aria-label="Account">
+              <SquareUser className="size-5" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent side="right" sideOffset={5}>
+            Account
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    </nav>
+  );
+}
+
+function NavBar() {
+  return (
+    <nav className="grid gap-1 p-2">
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="ghost" size="icon" className="rounded-lg bg-muted" aria-label="Playground">
+              <SquareTerminal className="size-5" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent side="right" sideOffset={5}>
+            Playground
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="ghost" size="icon" className="rounded-lg" aria-label="Models">
+              <Bot className="size-5" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent side="right" sideOffset={5}>
+            Models
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="ghost" size="icon" className="rounded-lg" aria-label="API">
+              <Code2 className="size-5" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent side="right" sideOffset={5}>
+            API
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="ghost" size="icon" className="rounded-lg" aria-label="Documentation">
+              <Book className="size-5" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent side="right" sideOffset={5}>
+            Documentation
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="ghost" size="icon" className="rounded-lg" aria-label="Settings">
+              <Settings2 className="size-5" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent side="right" sideOffset={5}>
+            Settings
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    </nav>
+  );
+}
+
 function SettingsPaneDrawer() {
   return (
     <Drawer>
@@ -346,64 +354,6 @@ function SettingsPane() {
             <Textarea id="content" placeholder="You are a..." className="min-h-[9.5rem]" />
           </div>
         </fieldset>
-      </form>
-    </div>
-  );
-}
-
-function MessagePane() {
-  return (
-    <div
-      className={cn(
-        "relative flex h-full",
-        /* "min-h-[50vh]", */ "flex-col rounded-xl bg-muted/50 p-4"
-        // "lg:col-span-2"
-      )}
-    >
-      <Badge variant="outline" className="absolute right-3 top-3">
-        Output
-      </Badge>
-      <div className="flex-1" />
-      <form
-        className="relative overflow-hidden rounded-lg border bg-background focus-within:ring-1 focus-within:ring-ring"
-        x-chunk="dashboard-03-chunk-1"
-      >
-        <Label htmlFor="message" className="sr-only">
-          Message
-        </Label>
-        <Textarea
-          id="message"
-          placeholder="Type your message here..."
-          className="min-h-12 resize-none border-0 p-3 shadow-none focus-visible:ring-0"
-        />
-        <div className="flex items-center p-3 pt-0">
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Paperclip className="size-4" />
-                  <span className="sr-only">Attach file</span>
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent side="top">Attach File</TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Mic className="size-4" />
-                  <span className="sr-only">Use Microphone</span>
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent side="top">Use Microphone</TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-          <Button type="submit" size="sm" className="ml-auto gap-1.5">
-            Send Message
-            <CornerDownLeft className="size-3.5" />
-          </Button>
-        </div>
       </form>
     </div>
   );
