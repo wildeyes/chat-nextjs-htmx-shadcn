@@ -5,11 +5,28 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
+import { RocketIcon } from "@radix-ui/react-icons";
+
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+
+type MessageType = {
+  text: string;
+};
+
+export function Message({ user, message }: { user: User; message: MessageType }) {
+  return (
+    <Alert>
+      {/* <RocketIcon className="h-4 w-4" /> */}
+      <AlertTitle>{user.name}</AlertTitle>
+      <AlertDescription>{message.text}</AlertDescription>
+    </Alert>
+  );
+}
 
 type User = {
   name: string;
 };
-export function MessagePane({ user }: { user: User }) {
+export function MessagePane({ user, messages }: { user: User; messages: MessageType[] }) {
   return (
     <div
       className={cn(
@@ -21,7 +38,12 @@ export function MessagePane({ user }: { user: User }) {
       <Badge variant="outline" className="absolute right-3 top-3">
         {user.name}
       </Badge>
-      <div className="flex-1" />
+      <div className="flex-1 overflow-y-auto space-y-4 mt-10">
+        {messages.map((message, index) => (
+          <Message key={index} user={user} message={message} />
+        ))}
+      </div>
+
       <form
         className="relative overflow-hidden rounded-lg border bg-background focus-within:ring-1 focus-within:ring-ring"
         x-chunk="dashboard-03-chunk-1"

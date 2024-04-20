@@ -54,8 +54,8 @@ export default function Home() {
         </header>
         <main className="grid flex-1 gap-4 overflow-auto p-4 md:grid-cols-2 lg:grid-cols-2">
           {/* <SettingsPane /> */}
-          <MessagePane user={{ name: "god" }} />
-          <MessagePane user={{ name: "man" }} />
+          <MessagePane user={{ name: "god" }} messages={[]} />
+          <MessagePane user={{ name: "man" }} messages={[]} />
         </main>
       </div>
     </div>
