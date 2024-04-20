@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-sync-scripts */
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
+import { WebSocketProvider } from "next-ws/client";
 
 import "@/app/globals.css";
 
@@ -28,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2"
           crossOrigin="anonymous"
         ></script>
-        <script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/sse.js"></script>
+        <script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/ws.js"></script>
       </body>
     </html>
   );

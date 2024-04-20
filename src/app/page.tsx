@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import {
   Bird,
@@ -30,35 +31,40 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip";
 import { MessagePane } from "./messages-pane";
+import { WebSocketProvider } from "next-ws/client";
 
 export default function Home() {
   return (
-    <div className="grid h-screen w-full pl-[53px]">
-      <aside className="inset-y fixed  left-0 z-20 flex h-full flex-col border-r">
-        <div className="border-b p-2">
-          <Button variant="outline" size="icon" aria-label="Home">
-            <Triangle className="size-5 fill-foreground" />
-          </Button>
-        </div>
-        {/* <NavBar />
+    <>
+      <WebSocketProvider url="ws://localhost:3000/api/ws">
+        <div className="grid h-screen w-full pl-[53px]">
+          <aside className="inset-y fixed  left-0 z-20 flex h-full flex-col border-r">
+            <div className="border-b p-2">
+              <Button variant="outline" size="icon" aria-label="Home">
+                <Triangle className="size-5 fill-foreground" />
+              </Button>
+            </div>
+            {/* <NavBar />
         <Navbar2 /> */}
-      </aside>
-      <div className="flex flex-col">
-        <header className="sticky top-0 z-10 flex h-[53px] items-center gap-1 border-b bg-background px-4">
-          <h1 className="text-xl font-semibold">Chat</h1>
-          {/* <SettingsPaneDrawer /> */}
-          <Button variant="outline" size="sm" className="ml-auto gap-1.5 text-sm">
-            <Share className="size-3.5" />
-            Share
-          </Button>
-        </header>
-        <main className="grid flex-1 gap-4 overflow-auto p-4 md:grid-cols-2 lg:grid-cols-2">
-          {/* <SettingsPane /> */}
-          <MessagePane user={{ name: "god" }} messages={[]} />
-          <MessagePane user={{ name: "man" }} messages={[]} />
-        </main>
-      </div>
-    </div>
+          </aside>
+          <div className="flex flex-col">
+            <header className="sticky top-0 z-10 flex h-[53px] items-center gap-1 border-b bg-background px-4">
+              <h1 className="text-xl font-semibold">Chat</h1>
+              {/* <SettingsPaneDrawer /> */}
+              <Button variant="outline" size="sm" className="ml-auto gap-1.5 text-sm">
+                <Share className="size-3.5" />
+                Share
+              </Button>
+            </header>
+            <main className="grid flex-1 gap-4 overflow-auto p-4 md:grid-cols-2 lg:grid-cols-2">
+              {/* <SettingsPane /> */}
+              <MessagePane user="god" conversating="man" />
+              <MessagePane user="man" conversating="god" />
+            </main>
+          </div>
+        </div>
+      </WebSocketProvider>
+    </>
   );
 }
 function Navbar2() {
